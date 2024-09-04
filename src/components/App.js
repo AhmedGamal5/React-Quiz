@@ -81,10 +81,12 @@ const App = () => {
   );
   // fetch data
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
+    fetch("https://raw.githubusercontent.com/AhmedGamal5/react-quiz-data/main/questions.json")
       .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataRecevied", payload: data }))
-      .catch((err) => dispatch({ type: "dataFeiled" }));
+      .then((data) => dispatch({ type: "dataRecevied", payload: data.questions}))
+     .catch((err) => {
+        console.error("Fetch error:", err);
+        dispatch({ type: "dataFeiled" })});
   }, []);
   return (
     <div className="app">
